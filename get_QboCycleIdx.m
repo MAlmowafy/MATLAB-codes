@@ -1,9 +1,13 @@
 
 function [TF,icycle,unified_Ep, unified_qbo] = get_QboCycleIdx(qbopath, qbofname,gwpath, gwfname, varname)
 
+%% EXAMPLE of qbofname and qbofpath %%
+%% -------------------------------- %%
 %qbofname='o_era5_uQBO_2007-2023.mat';
 %qbopath='C:\Work\MATLAB_New\ERA5\ERAnew\';
 
+%% EXAMPLE of gwfname and gwfpath %%
+%% -------------------------------- %%
 %gwfname='GNSS_tropics_2007-2023_Lz0-20';
 %gwpath = 'C:\Work\MATLAB_New\GNSS-RO\2007-2022\'
 
@@ -65,17 +69,7 @@ for i = 1:length(icycle)-1
 
         unified_qbo(i,k,:) = interp1(t_original, cyc, t_unified, 'linear');
         unified_Ep(i,k,:) = interp1(t_original, Ep_cyc, t_unified, 'linear');
-        
-        
-       
-        %unified_qbo(i,k,:) = interp1(t_original, cyc, t_unified, 'pchip');
-        %unified_Ep(i,k,:) = interp1(t_original, Ep_cyc, t_unified, 'pchip');
-
-        %idx = isnan(unified_Ep(i,k,:));
-        %unified_Ep(i,k,idx) = nan;
-%         idx =  isnan(interp1(tarray,u,t_new));
-%         u_newp(idx)=nan;
-          
+              
     end
 
   
@@ -87,5 +81,6 @@ for i = 1:length(icycle)-1
 end
 %%
 clear i k
+
 
 %save([pwd,'\QBO_cycles_lookup.mat'],'QBOcycles')
